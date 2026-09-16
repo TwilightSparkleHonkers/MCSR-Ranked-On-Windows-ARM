@@ -10,24 +10,24 @@ While these new Snapdragon chips work great for most use cases, they come with s
 
 # 1 - Let's play MCSR Ranked!
 ## 1. Install Prism launcher
-Find it on the official website: https://prismlauncher.org/download/windows/
+Find it on the official website: https://prismlauncher.org/download/windows/  
 **Be sure to install the ARM64 version, and not the x86 one!!**
 
 ## 2. Create an MCSR Ranked instance
-The steps are explained on the official website: https://mcsrranked.com/download
+The steps are explained on the official website: https://mcsrranked.com/download  
 Simply copy the link to the modpack, then in Prism select "Add Instance" -> "Import", and paste the link.
 
 ## 3. Download Java version
-MCSR Ranked is an old version of minecraft (1.16.1), which defaults to the very old Java 8, not available on ARM. You need to manually select a modern version of Java that works with ARM.
-Go to your instance settings -> Java. Check "Java Installation", then Click "Open Java Downloader". At the bottom, uncheck "Recommended" to show other versions. I have selected Java 21 from Mojang (java-runtime-delta at the time of writing this guide).
+MCSR Ranked is an old version of minecraft (1.16.1), which defaults to the very old Java 8, not available on ARM. You need to manually select a modern version of Java that works with ARM.  
+Go to your instance settings -> Java. Check "Java Installation", then Click "Open Java Downloader". At the bottom, uncheck "Recommended" to show other versions. I have selected Java 21 from Mojang (java-runtime-delta at the time of writing this guide).  
 Once you have downloaded it, click "Detect" and select it. Finally, check "Skip Java compatibility checks", otherwise the game will not launch and complain that it wants Java 8.
 
 ## 4. Select JWJGL Version 3.3.3
-At this point the game still does not launch. You will get an error in the logs, something like `Failed to locate library: lwjgl.dll`. Again, this old minecraft version defaults to LWJGL 3.2.2, which is not available for arm. You need to select version 3.3.3, the latest version that will work for MCSR.
+At this point the game still does not launch. You will get an error in the logs, something like `Failed to locate library: lwjgl.dll`. Again, this old minecraft version defaults to LWJGL 3.2.2, which is not available for arm. You need to select version 3.3.3, the latest version that will work for MCSR.  
 Go to your instance, select "Version". You should see LWJGL, Minecraft, Fabric and Intermediary Mappings. Select LWJGL, then "Change Version" on the right side, and double click 3.3.3. Hit "Download All", bottom right.
 
 ## 5. Launch the instance
-At this point the game may start. You may be prompted to update the MCSR Ranked mod, which you should do. Once it is up to date, re-open the instance and start a creative world. **If the game runs smoothly, you're done! Update your settings and queue up :)**
+At this point the game may start. You may be prompted to update the MCSR Ranked mod, which you should do. Once it is up to date, re-open the instance and start a creative world. **If the game runs smoothly, you're done! Update your settings and queue up :)**  
 However, if your game is running at 4 fps - like me, or worse, the game is still not launching, then keep reading...
 
 ## 6. Why is it lagging, and what's mesa zink
@@ -37,8 +37,8 @@ Older versions of Minecraft Java Edition famously uses the very outdated OpenGL 
 The proposed workaround here is to use Mesa Zink instead, which converts OpenGL API calls to Vulkan API calls, entirely bypassing whatever demon haunts this OpenGL-D3D12 pipeline.
 
 ## 7. Let's download Mesa Zink
-You can find it on ~~the official we..~~ this github page https://github.com/mmozeiko/build-mesa/releases
-(The official Mesa website/github does not provide builds for windows arm64 afaict.)
+You can find it on ~~the official we..~~ this github page https://github.com/mmozeiko/build-mesa/releases  
+(The official Mesa website/github does not provide builds for windows arm64 afaict.)  
 Select the latest release (26.2.2 at the time of writing), and make sure to download the **zink** archive for **arm64**! In my case, the file name is `mesa-zink-arm64-26.2.2.7z`. You will need to click the little "Show all 20 assets" at the bottom to have it show up. It is very important that you select the correct one, that is **zink and arm64**!!
 
 ## 8. Let's patch our java installation to use it
@@ -53,14 +53,14 @@ Unzip the 7z archive into a directory. Inside, you will find a couple libraries 
 -a----        03/09/2026     05:36       17138176 opengl32.dll
 ```
 Find the location where your java is installed (javaw.exe). You can find it in your prism isntance settings, under java. Mine looks like this:
-`C:/Users/twi/AppData/Roaming/PrismLauncher/java/java-runtime-delta/bin/javaw.exe -- YOURS WILL BE DIFFERENT!`
+`C:/Users/twi/AppData/Roaming/PrismLauncher/java/java-runtime-delta/bin/javaw.exe -- YOURS WILL BE DIFFERENT!`  
 Open this directory in the file explorer and simply paste all the dll/lib files in there, alongside your java install.
 
 > NOTE: This might be a bad way of doing this. If you're a developper and find this truly awful, please yell at me on discord @twinklesprinkle
 
 ## 9. For MCSR Ranked, add the following JVM argument
-In your instance settings, check "Java Arguments" and add this: `-Djava.awt.headless=true`
-This argument was suggested to me by Ranked developper Vibzz on the official MCSR Ranked Discord. I have no technical explanation for this step, except that it is a known bug of the MCSR Ranked mod.  It may be fixed in a future release and this may not be needed in the future. Thank you Vibzz!!
+In your instance settings, check "Java Arguments" and add this: `-Djava.awt.headless=true`  
+This argument was suggested to me by Ranked developper Vibzz on the official MCSR Ranked Discord. I have no technical explanation for this step, except that it is a known bug of the MCSR Ranked mod. It may be fixed in a future release and this may not be needed in the future. Thank you Vibzz!!
 
 ## 10. Change your settings and queue up!
 If you've done everything correctly, you should see 'zink' somewhere in the f3 menu on the right side (adjust GUI scale to see every line fully). You should not see any mention of D3D12 anymore. Most importantly, you should notice better performance :)
