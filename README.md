@@ -3,10 +3,10 @@ Play MCSR Ranked on a Snapdragon X1 or X2 laptop, with no lag, using prism launc
 
 Note: I am writing this guide using a Lenovo Slim 5x with Snapdragon X2.
 
-# DISCLAIMER: I AM NOT A GRAPICHS PIPELINE DEVELOPPER/EXPERT. THE TECHNICAL EXPLANATIONS GIVEN HERE MAY LACK DETAIL/BE PLAINLY WRONG. PLEASE TAKE THEM WITH A PINCH OF SALT. IF YOU UNDERSTAND THIS BETTER THAN ME, PLEASE CONTACT ME ON DISCORD @TWINKLESPRINKLE
+# DISCLAIMER: I AM NOT A GRAPICHS PIPELINE DEVELOPER/EXPERT. THE TECHNICAL EXPLANATIONS GIVEN HERE MAY LACK DETAIL/BE PLAINLY WRONG. PLEASE TAKE THEM WITH A PINCH OF SALT. IF YOU UNDERSTAND THIS BETTER THAN ME, PLEASE CONTACT ME ON DISCORD @TWINKLESPRINKLE
 
 # 0 - What is an arm/Snapdragon?
-ARM is a processor architecture. While ARM is historically the architecture used in mobile devices, it is starting to become more popular for computers, as ARM processors are typically more power-efficient than the traditional x86-64 processors made by Intel and Amd. The Snapdragon X1 and X2 are a new-ish series of ARM processors developped specifically by Qualcomm for Windows Laptops. (Note: Apple computers have been using ARM since the first M1 macbook).
+ARM is a processor architecture. While ARM is historically the architecture used in mobile devices, it is starting to become more popular for computers, as ARM processors are typically more power-efficient than the traditional x86-64 processors made by Intel and Amd. The Snapdragon X1 and X2 are a new-ish series of ARM processors developed specifically by Qualcomm for Windows Laptops. (Note: Apple computers have been using ARM since the first M1 macbook).
 
 While these new Snapdragon chips work great for most use cases, they come with some challenges when it comes to compatibility, especially with older programs. Modern versions of minecraft run just fine for example, however 1.16.1 requires some tinkering.
 
@@ -58,11 +58,11 @@ Find the location where your java is installed (javaw.exe). You can find it in y
 `C:/Users/twi/AppData/Roaming/PrismLauncher/java/java-runtime-delta/bin/javaw.exe -- YOURS WILL BE DIFFERENT!`  
 Open this directory in the file explorer and simply paste all the dll/lib files in there, alongside your java install.
 
-> NOTE: This might be a bad way of doing this. If you're a developper and find this truly awful, please yell at me on discord @twinklesprinkle
+> NOTE: This might be a bad way of doing this. If you're a developer and find this truly awful, please yell at me on discord @twinklesprinkle
 
 ## 9. For MCSR Ranked, add the following JVM argument
 In your instance settings, check "Java Arguments" and add this: `-Djava.awt.headless=true`  
-This argument was suggested to me by Ranked developper Vibzz on the official MCSR Ranked Discord. I have no technical explanation for this step, except that it is a known bug of the MCSR Ranked mod. It may be fixed in a future release and this may not be needed in the future. Thank you Vibzz!!
+This argument was suggested to me by Ranked developer Vibzz on the official MCSR Ranked Discord. I have no technical explanation for this step, except that it is a known bug of the MCSR Ranked mod. It may be fixed in a future release and this may not be needed in the future. Thank you Vibzz!!
 
 ## 10. Change your settings and queue up!
 If you've done everything correctly, you should see 'zink' somewhere in the f3 menu on the right side (adjust GUI scale to see every line fully). You should not see any mention of D3D12 anymore. Most importantly, you should notice better performance :)
