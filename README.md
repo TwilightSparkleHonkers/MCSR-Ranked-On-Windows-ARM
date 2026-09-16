@@ -30,8 +30,39 @@ Go to your instance, select "Version". You should see LWJGL, Minecraft, Fabric a
 At this point the game may start. You may be prompted to update the MCSR Ranked mod, which you should do. Once it is up to date, re-open the instance and start a creative world. **If the game runs smoothly, you're done! Update your settings and queue up :)**
 However, if your game is running at 4 fps - like me, or worse, the game is still not launching, then keep reading...
 
-## 6. Why is it lagging, and what's mesa/zink
+## 6. Why is it lagging, and what's mesa zink
 This paragraph simply explains the issue if you're curious. If you just want the steps to fix it, then skip to the next paragraph.
-Older versions of Minecraft Java Edition famously uses the very outdated OpenGL graphics API. As this API is old, it is not natively supported by the graphics drivers of some newer GPUs, such as the Qualcomm Adreno GPUs shipped with Snapdragon X devices. Instead, running OpenGL apps on these GPUs involves a translation layer, which translates OpenGL API calls to another, natively supported graphics API such as Vulkan or DirectX (A.K.A. Dx12, or D3D12). A translation layer is typically pre-installed on windows laptops, and translates these OpenGL calls to Dx12. And at the time of writing this, the default compatibility layer SUCKS. It REALLY REALLY sucks for older OpenGL apps.
+Older versions of Minecraft Java Edition famously uses the very outdated OpenGL graphics API. As this API is old, it is not natively supported by the graphics drivers of some newer GPUs, such as the Qualcomm Adreno GPUs shipped with Snapdragon X devices. Instead, running OpenGL apps on these GPUs involves a translation layer, which translates OpenGL API calls to another, natively supported graphics API such as Vulkan or DirectX (A.K.A. Dx12, or D3D12). By default, the translation layer on my laptop was Mesa D3D12. However something is horribly wrong somewhere in this pipeline (probably the translation layer itself?), and that causes older miencraft versions to "run" with impressively bad performance.
 
-The proposed workaround here is to use Mesa Zink instead, which converts OpenGL API calls to Vulkan API calls, entirely bypassing whatever is horribly wrong in this OpenGL-D3D12 pipeline.
+The proposed workaround here is to use Mesa Zink instead, which converts OpenGL API calls to Vulkan API calls, entirely bypassing whatever demon haunts this OpenGL-D3D12 pipeline.
+
+## 7. Let's download Mesa Zink
+You can find it on ~~the official we..~~ this github page https://github.com/mmozeiko/build-mesa/releases
+(The official Mesa website/github does not provide builds for windows arm64 afaict.)
+Select the latest release (26.2.2 at the time of writing), and make sure to download the **zink** archive for **arm64**! In my case, the file name is `mesa-zink-arm64-26.2.2.7z`. You will need to click the little "Show all 20 assets" at the bottom to have it show up. It is very important that you select the correct one, that is **zink and arm64**!!
+
+## 8. Let's patch our java installation to use it
+Unzip the 7z archive into a directory. Inside, you will find a couple libraries and dll files:
+```
+-a----        03/09/2026     05:36       17164288 libEGL.dll
+-a----        03/09/2026     05:36          11676 libEGL.lib
+-a----        03/09/2026     05:36         119808 libGLESv1_CM.dll
+-a----        03/09/2026     05:36          29768 libGLESv1_CM.lib
+-a----        03/09/2026     05:36         145408 libGLESv2.dll
+-a----        03/09/2026     05:36          78598 libGLESv2.lib
+-a----        03/09/2026     05:36       17138176 opengl32.dll
+```
+Find the location where your java is installed (javaw.exe). You can find it in your prism isntance settings, under java. Mine looks like this:
+`C:/Users/twi/AppData/Roaming/PrismLauncher/java/java-runtime-delta/bin/javaw.exe -- YOURS WILL BE DIFFERENT!`
+Open this directory in the file explorer and simply paste all the dll/lib files in there, alongside your java install.
+
+> NOTE: This might be a bad way of doing this. If you're a developper and find this truly awful, please yell at me on discord @twinklesprinkle
+
+## 9. For MCSR Ranked, add the following JVM argument
+In your instance settings, check "Java Arguments" and add this: `-Djava.awt.headless=true`
+This argument was suggested to me by Ranked developper Vibzz on the official MCSR Ranked Discord. I have no technical explanation for this step, except that it is a known bug of the MCSR Ranked mod.  It may be fixed in a future release and this may not be needed in the future. Thank you Vibzz!!
+
+## 10. Change your settings and queue up!
+If you've done everything correctly, you should see 'zink' somewhere in the f3 menu on the right side (adjust GUI scale to see every line fully). You should not see any mention of D3D12 anymore. Most importantly, you should notice better performance :)
+
+> NOTE: If you have a better workaround, PLEASE let me know. While this is playable, I am getting only getting ~50-60 fps. Still far below what I'd expect from a modern mid-range laptop, and half of what I get in modern versions of minecraft, even without this workaround.
