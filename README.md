@@ -3,6 +3,8 @@ Play MCSR Ranked on a Snapdragon X1 or X2 laptop, with no lag, using prism launc
 
 Note: I am writing this guide using a Lenovo Slim 5x with Snapdragon X2.
 
+# DISCLAIMER: I AM NOT A GRAPICHS PIPELINE DEVELOPPER/EXPERT. THE TECHNICAL EXPLANATIONS GIVEN HERE MAY LACK DETAIL/BE PLAINLY WRONG. PLEASE TAKE THEM WITH A PINCH OF SALT. IF YOU UNDERSTAND THIS BETTER THAN ME, PLEASE CONTACT ME ON DISCORD @TWINKLESPRINKLE
+
 # 0 - What is an arm/Snapdragon?
 ARM is a processor architecture. While ARM is historically the architecture used in mobile devices, it is starting to become more popular for computers, as ARM processors are typically more power-efficient than the traditional x86-64 processors made by Intel and Amd. The Snapdragon X1 and X2 are a new-ish series of ARM processors developped specifically by Qualcomm for Windows Laptops. (Note: Apple computers have been using ARM since the first M1 macbook).
 
