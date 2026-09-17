@@ -64,8 +64,8 @@ Open this directory in the file explorer and simply paste all the dll/lib files 
 
 ~~## 9. For MCSR Ranked, add the following JVM argument
 In your instance settings, check "Java Arguments" and add this: `-Djava.awt.headless=true`  
-This argument was suggested to me by Ranked developer Vibzz on the official MCSR Ranked Discord. I have no technical explanation for this step, except that it is a known bug of the MCSR Ranked mod. It may be fixed in a future release and this may not be needed in the future. Thank you Vibzz!!~~
-EDIT: This JVM argument is no longer necessary in the newest version of the MCSR Ranked mod.
+This argument was suggested to me by Ranked developer Vibzz on the official MCSR Ranked Discord. I have no technical explanation for this step, except that it is a known bug of the MCSR Ranked mod. It may be fixed in a future release and this may not be needed in the future. Thank you Vibzz!!~~  
+**EDIT: This JVM argument is no longer necessary in the newest version of the MCSR Ranked mod.**
 
 ## 10. Change your settings and queue up!
 If you've done everything correctly, you should see 'zink' somewhere in the f3 menu on the right side (adjust GUI scale to see every line fully). You should not see any mention of D3D12 anymore. Most importantly, you should notice better performance :)
