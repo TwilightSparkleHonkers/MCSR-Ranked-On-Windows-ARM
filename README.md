@@ -1,3 +1,5 @@
+# Video: https://youtu.be/tkizM-59HXo
+
 # MCSR-Ranked-On-Windows-ARM
 Play MCSR Ranked on a Snapdragon X1 or X2 laptop, with no lag, using prism launcher. **These instructions are specific to Windows ARM-based devices. If your device has an Intel or AMD processor, it is NOT ARM-based and you do NOT need to follow these steps.** If you are running Mac or Linux, the first couple steps may still be relevant. If you are running ChromeOS or Android, try your luck with Zalith launcher.
 
